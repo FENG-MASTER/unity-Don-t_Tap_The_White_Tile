@@ -45,7 +45,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Generater.cs" />
      <Compile Include="Assets\NGUI\Examples\Scripts\InventorySystem\Game\EquipItems.cs" />
      <Compile Include="Assets\NGUI\Examples\Scripts\InventorySystem\Game\EquipRandomItem.cs" />
      <Compile Include="Assets\NGUI\Examples\Scripts\InventorySystem\Game\UICursor.cs" />
@@ -183,17 +182,18 @@
      <Compile Include="Assets\NGUI\Scripts\UI\UITexture.cs" />
      <Compile Include="Assets\NGUI\Scripts\UI\UITooltip.cs" />
      <Compile Include="Assets\NGUI\Scripts\UI\UIViewport.cs" />
-     <Compile Include="Assets\Row.cs" />
      <Compile Include="Assets\script\BaseBlock.cs" />
      <Compile Include="Assets\script\BlackButton.cs" />
      <Compile Include="Assets\script\BlackClick_nomral.cs" />
      <Compile Include="Assets\script\ClickInterface.cs" />
+     <Compile Include="Assets\script\Generater.cs" />
      <Compile Include="Assets\script\MoveManager.cs" />
+     <Compile Include="Assets\script\Row.cs" />
      <Compile Include="Assets\script\Score.cs" />
      <Compile Include="Assets\script\ScreenManeger.cs" />
+     <Compile Include="Assets\script\StartGameManager.cs" />
      <Compile Include="Assets\script\WhileClick_nomral.cs" />
      <Compile Include="Assets\script\WhiltButton.cs" />
-     <Compile Include="Assets\test.cs" />
      <None Include="Assets\NGUI\Examples\Shaders\Unlit - Depth Cutout.shader" />
      <None Include="Assets\NGUI\ReadMe - 3.9.4.txt" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Masked 1.shader" />

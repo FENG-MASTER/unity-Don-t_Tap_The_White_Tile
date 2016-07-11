@@ -21,7 +21,7 @@ public class MoveManager : MonoBehaviour
         for (int i = 0; i < blockList.Count; i++)
         {
             old = blockList[i].transform.position;
-            blockList[i].transform.position = new Vector3(old.x, old.y + 0.1f, old.z);
+            blockList[i].transform.position = new Vector3(old.x, old.y + 0.2f, old.z);
 
             if (blockList[i].GetComponent<Row>().state == Row.State_Pos.Out)
             {

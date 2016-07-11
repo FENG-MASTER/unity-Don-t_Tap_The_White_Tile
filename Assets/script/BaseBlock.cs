@@ -34,11 +34,8 @@ public class BaseBlock : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-
             renderer.sprite = sp_down;
             clickIn.OnClick();
-
-
         }
         if (Input.GetMouseButtonUp(0))
         {

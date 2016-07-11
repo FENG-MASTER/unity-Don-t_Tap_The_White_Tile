@@ -14,11 +14,11 @@ public class WhileClick_Nomral : ClickInterface {
 
     public void OnClick()
     {
-        score.AddScore(-1);
+        score.GameEnd();
     }
     public void OnNoClick()
     {
-
+       
     }
 
 
