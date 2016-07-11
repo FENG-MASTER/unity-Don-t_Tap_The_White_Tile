@@ -10,6 +10,8 @@ public class BaseBlock : MonoBehaviour
     public State_Pos state = State_Pos.Start;//
     public Sprite sp_nomraml;
     public Sprite sp_down;
+    public bool isDestroy = false;//销毁标记
+
 
     protected SpriteRenderer renderer;
     protected Score score;
@@ -18,6 +20,7 @@ public class BaseBlock : MonoBehaviour
 
     public void Start()
     {
+        
         renderer = GetComponent<SpriteRenderer>();
         score = GameObject.Find("manager").GetComponent<Score>();
         sp_nomraml = renderer.sprite;
@@ -46,12 +49,22 @@ public class BaseBlock : MonoBehaviour
 
     }
 
+    /**
+     * 这个函数有坑,这个回调是说当该物体不在相机范围内,那么会调用这个函数
+     * 包括两种情况:
+     *              1.物体离开相机显示范围
+     *              2.物体被清除
+     * 
+     * */
     void OnBecameInvisible()
     {
+        if(isDestroy){
+            return;
+        }
         if (state == State_Pos.Moving)
         {
-            clickIn.OnNoClick();
             state = State_Pos.Out;
+            clickIn.OnNoClick();
         }
     }
 

@@ -34,22 +34,12 @@ public class Row : MonoBehaviour
         if(!hasInit){
             return;
         }
+
         UpdatePosition(b1, 1);
         UpdatePosition(b2, 2);
         UpdatePosition(b3, 3);
         UpdatePosition(b4, 4);
-        if (transform.position.y > -38 && transform.position.y < -18)
-        {
-            state = State_Pos.Moving;
-        }
-        else if (transform.position.y < -38)
-        {
-            state = State_Pos.Start;
-        }
-        else if (transform.position.y > -18)
-        {
-            state = State_Pos.Out;
-        }
+        UpdateState();
 
     }
 
@@ -61,10 +51,55 @@ public class Row : MonoBehaviour
 
     public void DestroyChildren()
     {
-        Destroy(b1);
+        b1.GetComponent<BaseBlock>().isDestroy = true;//添加销毁标记
+        b2.GetComponent<BaseBlock>().isDestroy = true;
+        b3.GetComponent<BaseBlock>().isDestroy = true;
+        b4.GetComponent<BaseBlock>().isDestroy = true;
+
+        Destroy(b1);//销毁
         Destroy(b2);
         Destroy(b3);
         Destroy(b4);
+    }
+
+    public void StopTouch()
+    {
+        b1.GetComponent<BoxCollider>().enabled = false;
+        b2.GetComponent<BoxCollider>().enabled = false;
+        b3.GetComponent<BoxCollider>().enabled = false;
+        b4.GetComponent<BoxCollider>().enabled = false;
+    }
+
+    private bool isMoving()
+    {
+        return b1.GetComponent<BaseBlock>().state == BaseBlock.State_Pos.Moving ||
+               b2.GetComponent<BaseBlock>().state == BaseBlock.State_Pos.Moving ||
+               b3.GetComponent<BaseBlock>().state == BaseBlock.State_Pos.Moving ||
+               b4.GetComponent<BaseBlock>().state == BaseBlock.State_Pos.Moving;
+    }
+
+    private bool isOut()
+    {
+        return b1.GetComponent<BaseBlock>().state == BaseBlock.State_Pos.Out &&
+               b2.GetComponent<BaseBlock>().state == BaseBlock.State_Pos.Out &&
+               b3.GetComponent<BaseBlock>().state == BaseBlock.State_Pos.Out &&
+               b4.GetComponent<BaseBlock>().state == BaseBlock.State_Pos.Out;
+    }
+
+    private void UpdateState()
+    {
+        if(isMoving())
+        {
+            state = State_Pos.Moving;
+        }else if(isOut())
+        {
+            state = State_Pos.Out;
+        }
+        else
+        {
+            state = State_Pos.Start;
+        }
+
     }
 
 

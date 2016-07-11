@@ -9,9 +9,6 @@ public class WhileClick_Nomral : ClickInterface {
         this.score=score;
         
     }
-
- 
-
     public void OnClick()
     {
         score.GameEnd();

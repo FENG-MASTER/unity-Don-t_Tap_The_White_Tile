@@ -11,6 +11,8 @@ public class Generater : MonoBehaviour
 
     private MoveManager manager;
 
+    private bool canGen = true;
+
     // Use this for initialization
     void Start()
     {
@@ -25,8 +27,10 @@ public class Generater : MonoBehaviour
 
     public void gen()
     {
+        if(!canGen){
+            return;
+        }
         List<GameObject> list = manager.blockList;
-        print("gen1");
         for (int i = 0; i < list.Count; i++)
         {
             if (list[i].GetComponent<Row>().state == Row.State_Pos.Start)
@@ -35,9 +39,9 @@ public class Generater : MonoBehaviour
             }
 
         }
-        print("gen3");
+        
         GameObject o = Instantiate<GameObject>(obj);
-        o.transform.position = new Vector3(10f, -41.79f, -3.03f);
+        o.transform.position = new Vector3(10f, -45.47f, -3.03f);
         GameObject[] os = getRandmonBlocks();
         o.GetComponent<Row>().Init(os[0],os[1],os[2],os[3]);
     }
@@ -45,14 +49,34 @@ public class Generater : MonoBehaviour
     private GameObject[] getRandmonBlocks()
     {
         GameObject[] objs=new GameObject[4];
+        int Rnum=(int)(Random.value * 100) % 4;
+        objs[Rnum] = Instantiate<GameObject>(block_b);
         for (int i = 0; i < objs.Length;i++ )
         {
-            objs[i] = Instantiate<GameObject>(block_w);
+            if (i != Rnum)
+            {
+                objs[i] = Instantiate<GameObject>(block_w);
+            }
         }
 
-        objs[(int)(Random.value*100) % 4]=Instantiate<GameObject>(block_b);
         return objs;
      
+
+    }
+
+    public void GameStateChange(Score.State state)
+    {
+        
+        if(state==Score.State.end){
+            canGen = false;
+            print("GameStateChange end");
+        }
+        else if (state == Score.State.ing)
+        {
+            canGen = true;
+            print("GameStateChange ing");
+        }
+
 
     }
 }
