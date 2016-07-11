@@ -7,14 +7,13 @@ public class BlackClick_nomral : ClickInterface {
     private bool hasClicked=false;
   
 
-    public BlackClick_nomral(Score score,GameObject parent)
+    public BlackClick_nomral(GameObject parent)
     {
-        this.score = score;
         this.parent = parent;
     }
     public  void OnClick()
     {
-        score.AddScore(1);
+        Score.instacne.AddScore(1);
         hasClicked = true;
         //播放消失动画
         parent.GetComponent<TweenAlpha>().gameObject.SetActive(true);

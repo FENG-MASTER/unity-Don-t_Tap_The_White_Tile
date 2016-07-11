@@ -4,9 +4,8 @@ using System.Collections;
 public class WhileClick_Nomral : ClickInterface {
     private Score score;
 
-    public WhileClick_Nomral(Score score)
+    public WhileClick_Nomral()
     {
-        this.score=score;
         
     }
     public void OnClick()

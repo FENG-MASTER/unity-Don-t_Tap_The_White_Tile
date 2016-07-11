@@ -9,6 +9,11 @@ public class Generater : MonoBehaviour
     public GameObject block_b;
     public GameObject block_w;
 
+    public Sprite black;
+    public Sprite black_down;
+    public Sprite white;
+    public Sprite white_down;
+
     private MoveManager manager;
 
     private bool canGen = true;
@@ -51,11 +56,13 @@ public class Generater : MonoBehaviour
         GameObject[] objs=new GameObject[4];
         int Rnum=(int)(Random.value * 100) % 4;
         objs[Rnum] = Instantiate<GameObject>(block_b);
+        objs[Rnum].GetComponent<BaseBlock>().Init(black, black_down, new BlackClick_nomral(objs[Rnum]));
         for (int i = 0; i < objs.Length;i++ )
         {
             if (i != Rnum)
             {
                 objs[i] = Instantiate<GameObject>(block_w);
+                objs[i].GetComponent<BaseBlock>().Init(white, white_down, new WhileClick_Nomral());
             }
         }
 

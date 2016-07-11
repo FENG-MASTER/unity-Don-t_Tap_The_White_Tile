@@ -206,12 +206,11 @@
     <Compile Include="Assets\script\Controller\ScreenManeger.cs" />
     <Compile Include="Assets\script\Controller\StartGameManager.cs" />
     <Compile Include="Assets\script\Model\BaseBlock.cs" />
-    <Compile Include="Assets\script\Model\BlackButton.cs" />
     <Compile Include="Assets\script\Model\BlackClick_nomral.cs" />
     <Compile Include="Assets\script\Model\ClickInterface.cs" />
+    <Compile Include="Assets\script\Model\MultipleClick.cs" />
     <Compile Include="Assets\script\Model\Row.cs" />
     <Compile Include="Assets\script\Model\WhileClick_nomral.cs" />
-    <Compile Include="Assets\script\Model\WhiltButton.cs" />
     <Compile Include="Assets\script\MyUtils.cs" />
     <Compile Include="Assets\script\Score.cs" />
   </ItemGroup>

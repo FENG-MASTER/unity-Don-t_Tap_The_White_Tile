@@ -8,7 +8,7 @@ public class BaseBlock : MonoBehaviour
     public enum State_Pos { Start, Moving, Out };
 
     public State_Pos state = State_Pos.Start;//状态量
-    public Sprite sp_nomraml;//正常贴图
+    public Sprite sp_normal;//正常贴图
     public Sprite sp_down;//按下时候的贴图
     public bool isDestroy = false;//销毁标记,用于解决异步的销毁过程产生的问题
 
@@ -17,12 +17,21 @@ public class BaseBlock : MonoBehaviour
     protected ClickInterface clickIn;//点击处理接口
     protected Score score;
 
-    public void Start()
+    public void Init(Sprite normal,Sprite down,ClickInterface cInterface)
+    {
+        sp_normal = normal;
+        sp_down = down;
+        clickIn = cInterface;
+        renderer = GetComponent<SpriteRenderer>();
+        renderer.sprite=sp_normal;
+    }
+
+    public void Awake()
     {
         renderer = GetComponent<SpriteRenderer>();
         score = GameObject.Find("manager").GetComponent<Score>();
-        sp_nomraml = renderer.sprite;
-        clickIn = new WhileClick_Nomral(score);//默认是白块的点击处理
+        sp_normal = renderer.sprite;
+        clickIn = new WhileClick_Nomral();//默认是白块的点击处理
     }
 
 
@@ -37,7 +46,7 @@ public class BaseBlock : MonoBehaviour
         }
         if (Input.GetMouseButtonUp(0))//当鼠标左键松开
         {
-            renderer.sprite = sp_nomraml;//改变回原来贴图
+            renderer.sprite = sp_normal;//改变回原来贴图
 
         }
 
@@ -68,6 +77,12 @@ public class BaseBlock : MonoBehaviour
         {
             state = State_Pos.Moving;//状态改成移动
         }
+    }
+
+
+    public void SetClickInterface(ClickInterface CInterface)
+    {
+        clickIn = CInterface;
     }
 
 
