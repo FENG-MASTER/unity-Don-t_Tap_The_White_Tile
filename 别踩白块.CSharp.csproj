@@ -200,18 +200,20 @@
     <Compile Include="Assets\NGUI\Scripts\UI\UITexture.cs" />
     <Compile Include="Assets\NGUI\Scripts\UI\UITooltip.cs" />
     <Compile Include="Assets\NGUI\Scripts\UI\UIViewport.cs" />
-    <Compile Include="Assets\script\BaseBlock.cs" />
-    <Compile Include="Assets\script\BlackButton.cs" />
-    <Compile Include="Assets\script\BlackClick_nomral.cs" />
-    <Compile Include="Assets\script\ClickInterface.cs" />
-    <Compile Include="Assets\script\Generater.cs" />
-    <Compile Include="Assets\script\MoveManager.cs" />
-    <Compile Include="Assets\script\Row.cs" />
+    <Compile Include="Assets\script\Controller\Generater.cs" />
+    <Compile Include="Assets\script\Controller\MainGameController.cs" />
+    <Compile Include="Assets\script\Controller\MoveManager.cs" />
+    <Compile Include="Assets\script\Controller\ScreenManeger.cs" />
+    <Compile Include="Assets\script\Controller\StartGameManager.cs" />
+    <Compile Include="Assets\script\Model\BaseBlock.cs" />
+    <Compile Include="Assets\script\Model\BlackButton.cs" />
+    <Compile Include="Assets\script\Model\BlackClick_nomral.cs" />
+    <Compile Include="Assets\script\Model\ClickInterface.cs" />
+    <Compile Include="Assets\script\Model\Row.cs" />
+    <Compile Include="Assets\script\Model\WhileClick_nomral.cs" />
+    <Compile Include="Assets\script\Model\WhiltButton.cs" />
+    <Compile Include="Assets\script\MyUtils.cs" />
     <Compile Include="Assets\script\Score.cs" />
-    <Compile Include="Assets\script\ScreenManeger.cs" />
-    <Compile Include="Assets\script\StartGameManager.cs" />
-    <Compile Include="Assets\script\WhileClick_nomral.cs" />
-    <Compile Include="Assets\script\WhiltButton.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\NGUI\Examples\Atlases\Fantasy\Fantasy Font - Normal.txt" />
