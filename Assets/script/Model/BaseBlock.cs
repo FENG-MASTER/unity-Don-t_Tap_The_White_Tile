@@ -31,7 +31,7 @@ public class BaseBlock : MonoBehaviour
         renderer = GetComponent<SpriteRenderer>();
         score = GameObject.Find("manager").GetComponent<Score>();
         sp_normal = renderer.sprite;
-        clickIn = new WhileClick_Nomral();//默认是白块的点击处理
+        clickIn = new WhileClick_Nomral(gameObject);//默认是白块的点击处理
     }
 
 

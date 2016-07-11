@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class MainGameController : MonoBehaviour {
 
     public static MainGameController instance;
+    private MoveManager moveManager;
 
     public UILabel finalScore;
     public GameObject container;
@@ -14,10 +15,12 @@ public class MainGameController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         instance = this;
+    
 	}
 	
 	// Update is called once per frame
 	void Update () {
+
 	
 	}
 

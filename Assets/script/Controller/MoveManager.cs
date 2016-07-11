@@ -7,7 +7,9 @@ public class MoveManager : MonoBehaviour
 
     public List<GameObject>  blockList = new List<GameObject>();
 
-    private float speed = 0.2f;
+    public float speed = 0.2f;
+
+    private bool isMove=true;
 
     // Use this for initialization
     void Start()
@@ -18,6 +20,10 @@ public class MoveManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(!isMove){
+            return;
+        }
+        speed = getSpeed(Score.instacne.scoreVal);
         blockList = new List<GameObject>(GameObject.FindGameObjectsWithTag("Row"));
         Vector3 old;
         for (int i = 0; i < blockList.Count; i++)
@@ -58,6 +64,29 @@ public class MoveManager : MonoBehaviour
         blockList.Clear();
         speed = 0.2f;
    
+    }
+
+    public void GameStateChange(MyUtils.GameState state) { 
+        if(state==MyUtils.GameState.Ing){
+            isMove = true;
+        }
+        else if (state == MyUtils.GameState.End)
+        {
+            isMove=false;
+        }
+    }
+
+    private float getSpeed(int score)
+    {
+        if(score<500){
+            score += (int)(Random.value*100) % 10;
+            return 0.0012f*score+0.2f;
+        }else{
+            return (float)System.Math.Sqrt(0.00032*score+0.17);
+
+        }
+
+
     }
 
 }
