@@ -13,6 +13,8 @@ public class MainGameController : MonoBehaviour {
     private MyUtils.GameState gobalState = MyUtils.GameState.Ing;
 
 	// Use this for initialization
+
+
 	void Start () {
         instance = this;
     

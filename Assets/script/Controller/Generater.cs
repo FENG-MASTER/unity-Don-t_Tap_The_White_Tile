@@ -46,9 +46,11 @@ public class Generater : MonoBehaviour
         }
         
         GameObject o = Instantiate<GameObject>(obj);
-        o.transform.position = new Vector3(10f, -14.55f, -3.03f);
+        o.transform.position = new Vector3(Camera.main.transform.position.x, 
+            Camera.main.transform.position.y+Screen.height/100.0f/2.0f+3.0f*BaseBlock.heigh/2f-0.25f, 
+            Camera.main.transform.position.z);
         GameObject[] os = getRandmonBlocks();
-        o.GetComponent<Row>().Init(os[0],os[1],os[2],os[3]);
+        o.GetComponent<Row>().Init(os);
     }
 
     private GameObject[] getRandmonBlocks()
@@ -61,9 +63,9 @@ public class Generater : MonoBehaviour
 
         int r = (int)(Random.value * 200) % 10;
         if(r==1){
-            objs[Rnum].GetComponent<BaseBlock>().Init(twiceBlock, twiceBlock, new MultipleClick(objs[Rnum], 2));
+            objs[Rnum].GetComponent<BaseBlock>().Init(twiceBlock, twiceBlock, new MultipleClick(objs[Rnum], 2),objs.Length);
         }else{
-            objs[Rnum].GetComponent<BaseBlock>().Init(black, black_down, new BlackClick_nomral(objs[Rnum]));
+            objs[Rnum].GetComponent<BaseBlock>().Init(black, black_down, new BlackClick_nomral(objs[Rnum]), objs.Length);
         }
 
         
@@ -72,7 +74,7 @@ public class Generater : MonoBehaviour
             if (i != Rnum)
             {
                 objs[i] = Instantiate<GameObject>(block);
-                objs[i].GetComponent<BaseBlock>().Init(white, white_down, new WhileClick_Nomral(objs[i]));
+                objs[i].GetComponent<BaseBlock>().Init(white, white_down, new WhileClick_Nomral(objs[i]), objs.Length);
             }
         }
 

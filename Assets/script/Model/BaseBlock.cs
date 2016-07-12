@@ -4,7 +4,8 @@ using System.Collections;
 //方块基类
 public class BaseBlock : MonoBehaviour
 {
-
+    public static float heigh = Screen.height / 100.0f / 4f;
+    public static float width = Screen.width / 100.0f / 4f;
     public enum State_Pos { Start, Moving, Out };
 
     public State_Pos state = State_Pos.Start;//状态量
@@ -17,13 +18,17 @@ public class BaseBlock : MonoBehaviour
     protected ClickInterface clickIn;//点击处理接口
     protected Score score;
 
-    public void Init(Sprite normal,Sprite down,ClickInterface cInterface)
+    public void Init(Sprite normal,Sprite down,ClickInterface cInterface,int perRowNum)
     {
+        heigh = Screen.height / 100.0f / perRowNum;
+        width = Screen.width / 100.0f / perRowNum;
         sp_normal = normal;
         sp_down = down;
         clickIn = cInterface;
         renderer = GetComponent<SpriteRenderer>();
         renderer.sprite=sp_normal;
+
+        transform.localScale = new Vector3(width / (renderer.sprite.rect.width/100), heigh / (renderer.sprite.rect.height/100), 1);
     }
 
     public void Awake()

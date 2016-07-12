@@ -28,8 +28,17 @@ public class MoveManager : MonoBehaviour
         Vector3 old;
         for (int i = 0; i < blockList.Count; i++)
         {
+
+            //这里采用了跟屁虫的做法,后面的方块全部跟着第一个方块,这样就可以保持整齐
             old = blockList[i].transform.position;
-            blockList[i].transform.position = new Vector3(old.x, old.y-speed, old.z);
+            if(i==0){
+                blockList[i].transform.position = new Vector3(old.x, old.y-speed, old.z);
+            }
+            else
+            {
+                blockList[i].transform.position = new Vector3(old.x, blockList[i - 1].transform.position.y + BaseBlock.heigh, old.z);
+            }
+
 
             if (blockList[i].GetComponent<Row>().state == Row.State_Pos.Out)
             {
@@ -78,6 +87,7 @@ public class MoveManager : MonoBehaviour
 
     private float getSpeed(int score)
     {
+        return 0.05f;
         if(score<500){
             score += (int)(Random.value*100) % 10;
             return 0.0012f*score+0.2f;

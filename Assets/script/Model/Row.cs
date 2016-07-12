@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Row : MonoBehaviour
 {
+    public GameObject[] blocks;
 
     public GameObject b1;
     public GameObject b2;
@@ -13,12 +14,11 @@ public class Row : MonoBehaviour
     public State_Pos state = State_Pos.Start;
     private bool hasInit = false;
 
-    public void Init(GameObject o1,GameObject o2,GameObject o3,GameObject o4)
+    public void Init(GameObject[] blocks)
     {
-        b1 = o1;
-        b2 = o2;
-        b3 = o3;
-        b4 = o4;
+        this.blocks = blocks;
+        BaseBlock.heigh = Screen.height / 100f / blocks.Length;
+        BaseBlock.width = Screen.width / 100f / blocks.Length;
         hasInit = true;
     }
 
@@ -35,55 +35,65 @@ public class Row : MonoBehaviour
             return;
         }
 
-        UpdatePosition(b1, 1);
-        UpdatePosition(b2, 2);
-        UpdatePosition(b3, 3);
-        UpdatePosition(b4, 4);
         UpdateState();
+
+        for (int i = 0; i < blocks.Length;i++ )
+        {
+            UpdatePosition(blocks[i],i);
+        }
+
+
+        
 
     }
 
+
+    //更新ogj这个物体的位置,这个位置在左边数第num个,一共blocks这个数组那么多个
     private void UpdatePosition(GameObject obj, int num)
     {
         Vector3 v = this.transform.position;
-        obj.transform.position = new Vector3(v.x - (num * 3 - 7.5f), v.y, v.z);
+        obj.transform.position = new Vector3(v.x + (num - (blocks.Length-1)/2f)*BaseBlock.width, v.y, v.z);
     }
 
     public void DestroyChildren()
     {
-        b1.GetComponent<BaseBlock>().isDestroy = true;//添加销毁标记
-        b2.GetComponent<BaseBlock>().isDestroy = true;
-        b3.GetComponent<BaseBlock>().isDestroy = true;
-        b4.GetComponent<BaseBlock>().isDestroy = true;
+        for (int i = 0; i < blocks.Length;i++ )
+        {
+            blocks[i].GetComponent<BaseBlock>().isDestroy = true;//添加销毁标记
+            Destroy(blocks[i]);//销毁
+        }
 
-        Destroy(b1);//销毁
-        Destroy(b2);
-        Destroy(b3);
-        Destroy(b4);
+ 
     }
 
     public void StopTouch()
     {
-        b1.GetComponent<BoxCollider>().enabled = false;
-        b2.GetComponent<BoxCollider>().enabled = false;
-        b3.GetComponent<BoxCollider>().enabled = false;
-        b4.GetComponent<BoxCollider>().enabled = false;
+        for (int i = 0; i < blocks.Length; i++)
+        {
+            blocks[i].GetComponent<BoxCollider>().enabled = false;//阻断点击事件
+        }
+       
     }
 
     private bool isMoving()
     {
-        return b1.GetComponent<BaseBlock>().state == BaseBlock.State_Pos.Moving ||
-               b2.GetComponent<BaseBlock>().state == BaseBlock.State_Pos.Moving ||
-               b3.GetComponent<BaseBlock>().state == BaseBlock.State_Pos.Moving ||
-               b4.GetComponent<BaseBlock>().state == BaseBlock.State_Pos.Moving;
+        bool flag = false;
+        for (int i = 0; i < blocks.Length; i++)
+        {
+           flag = flag || (blocks[i].GetComponent<BaseBlock>().state == BaseBlock.State_Pos.Moving);
+        }
+
+        return flag;
     }
 
     private bool isOut()
     {
-        return b1.GetComponent<BaseBlock>().state == BaseBlock.State_Pos.Out &&
-               b2.GetComponent<BaseBlock>().state == BaseBlock.State_Pos.Out &&
-               b3.GetComponent<BaseBlock>().state == BaseBlock.State_Pos.Out &&
-               b4.GetComponent<BaseBlock>().state == BaseBlock.State_Pos.Out;
+        bool flag = true;
+        for (int i = 0; i < blocks.Length; i++)
+        {
+            flag = flag && (blocks[i].GetComponent<BaseBlock>().state == BaseBlock.State_Pos.Out);
+        }
+        return flag;
     }
 
     private void UpdateState()
