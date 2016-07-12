@@ -24,11 +24,27 @@ public class MainGameController : MonoBehaviour {
 
 	// Use this for initialization
 
-
-	void Start () {
+    void Awake()
+    {
         instance = this;
-      //  factory = new ClassicalFactory(rowPrefab, block, blackSprite, whliteSprite, whliteDownSprite);
-        factory = new DBlclickFactory(rowPrefab, block, blackSprite, whliteSprite, whliteDownSprite, DBSprite);
+        int type=PlayerPrefs.GetInt("GameType");
+        switch(type){
+            case MyUtils.GameType.Classics:
+                factory = new ClassicalFactory(rowPrefab, block, blackSprite, whliteSprite, whliteDownSprite);
+                break;
+            case MyUtils.GameType.DBclick:
+                factory = new DBlclickFactory(rowPrefab, block, blackSprite, whliteSprite, whliteDownSprite, DBSprite);
+                break;
+            default:
+                factory = new ClassicalFactory(rowPrefab, block, blackSprite, whliteSprite, whliteDownSprite);
+                break;
+        }
+
+    }
+	void Start () {
+       
+
+      
 	}
 	
 	// Update is called once per frame

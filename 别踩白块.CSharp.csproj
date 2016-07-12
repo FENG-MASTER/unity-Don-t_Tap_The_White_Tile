@@ -63,7 +63,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\DBlclickFactory.cs" />
     <Compile Include="Assets\NGUI\Examples\Scripts\InventorySystem\Game\EquipItems.cs" />
     <Compile Include="Assets\NGUI\Examples\Scripts\InventorySystem\Game\EquipRandomItem.cs" />
     <Compile Include="Assets\NGUI\Examples\Scripts\InventorySystem\Game\UICursor.cs" />
@@ -201,12 +200,14 @@
     <Compile Include="Assets\NGUI\Scripts\UI\UITexture.cs" />
     <Compile Include="Assets\NGUI\Scripts\UI\UITooltip.cs" />
     <Compile Include="Assets\NGUI\Scripts\UI\UIViewport.cs" />
+    <Compile Include="Assets\script\Controller\ChoiceController.cs" />
     <Compile Include="Assets\script\Controller\MainGameController.cs" />
     <Compile Include="Assets\script\Controller\MoveManager.cs" />
     <Compile Include="Assets\script\Controller\ScreenManeger.cs" />
     <Compile Include="Assets\script\Controller\StartGameManager.cs" />
     <Compile Include="Assets\script\Factory\BaseFactory.cs" />
     <Compile Include="Assets\script\Factory\ClassicalFactory.cs" />
+    <Compile Include="Assets\script\Factory\DBlclickFactory.cs" />
     <Compile Include="Assets\script\Model\BaseBlock.cs" />
     <Compile Include="Assets\script\Model\BlackClick_nomral.cs" />
     <Compile Include="Assets\script\Model\ClickInterface.cs" />
