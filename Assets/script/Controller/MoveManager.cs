@@ -71,7 +71,7 @@ public class MoveManager : MonoBehaviour
         //    Destroy(blockList[i]);
         }
         blockList.Clear();
-        speed = 0.2f;
+     
    
     }
 
@@ -87,13 +87,12 @@ public class MoveManager : MonoBehaviour
 
     private float getSpeed(int score)
     {
-        return 0.05f;
-        if(score<500){
-            score += (int)(Random.value*100) % 10;
-            return 0.0012f*score+0.2f;
+      
+        if(score<200){
+            score += ((int)(Random.value*100) % 10);
+            return (0.0025f*score+1)*BaseBlock.heigh/30f;
         }else{
-            return (float)System.Math.Sqrt(0.00032*score+0.17);
-
+            return (0.001f * score + 1) * BaseBlock.heigh / 30f;
         }
 
 

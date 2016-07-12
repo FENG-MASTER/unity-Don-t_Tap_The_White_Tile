@@ -30,13 +30,13 @@ public class MainGameController : MonoBehaviour {
         int type=PlayerPrefs.GetInt("GameType");
         switch(type){
             case MyUtils.GameType.Classics:
-                factory = new ClassicalFactory(rowPrefab, block, blackSprite, whliteSprite, whliteDownSprite);
+                factory = new ClassicalFactory();
                 break;
             case MyUtils.GameType.DBclick:
-                factory = new DBlclickFactory(rowPrefab, block, blackSprite, whliteSprite, whliteDownSprite, DBSprite);
+                factory = new DBlclickFactory();
                 break;
             default:
-                factory = new ClassicalFactory(rowPrefab, block, blackSprite, whliteSprite, whliteDownSprite);
+                factory = new ClassicalFactory();
                 break;
         }
 

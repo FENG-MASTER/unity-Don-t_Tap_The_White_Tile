@@ -18,6 +18,7 @@ public class MultipleClick : ClickInterface
     {
         hasClick--;
         gameobj.GetComponent<SpriteRenderer>().color = new Color(0,0,0,((float)hasClick)/clickTimes);
+        Score.instacne.AddScore(1);
         if (hasClick < 0)
         {
             MainGameController.instance.EndGame();

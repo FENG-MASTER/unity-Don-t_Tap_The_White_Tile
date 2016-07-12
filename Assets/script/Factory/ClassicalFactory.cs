@@ -10,15 +10,13 @@ public  class ClassicalFactory :BaseFactory {
     public Sprite blackSprite;
     public Sprite whliteDownSprite;
 
-    public ClassicalFactory(GameObject row, 
-        GameObject block, Sprite blackSprite, 
-        Sprite whliteSprite,Sprite whliteDownSprite):base(row)
+    public ClassicalFactory()
     {
-        this.rowPrefab = row;
-        this.block = block;
-        this.whliteSprite = whliteSprite;
-        this.blackSprite = blackSprite;
-        this.whliteDownSprite = whliteDownSprite;
+        this.rowPrefab = GameRes.instance.prefab_row;
+        this.block = GameRes.instance.prefab_block;
+        this.whliteSprite = GameRes.instance.sprite_whlite;
+        this.blackSprite = GameRes.instance.sprite_black;
+        this.whliteDownSprite = GameRes.instance.sprite_whlite_down;
     }
 
 

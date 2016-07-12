@@ -10,9 +10,9 @@ public abstract class BaseFactory
 
     protected GameObject rowPrefab;
 
-    public BaseFactory(GameObject rowPrefab)
+    public BaseFactory()
     {
-        this.rowPrefab = rowPrefab;
+        this.rowPrefab = GameRes.instance.prefab_row;
 
     }
 

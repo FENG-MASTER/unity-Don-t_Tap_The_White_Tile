@@ -10,15 +10,14 @@ public class DBlclickFactory : BaseFactory {
     public Sprite whliteDownSprite;
     public Sprite DBclickSprite;
 
-    public DBlclickFactory(GameObject row,GameObject block,
-        Sprite black,Sprite whilte,Sprite whilteDown,
-        Sprite DB):base(row)
+    public DBlclickFactory()
     {
-        this.block = block;
-        this.blackSprite = black;
-        this.whliteSprite = whilte;
-        this.whliteDownSprite = whilteDown;
-        this.DBclickSprite = DB;
+        this.rowPrefab = GameRes.instance.prefab_row;
+        this.block = GameRes.instance.prefab_block;
+        this.blackSprite = GameRes.instance.sprite_black;
+        this.whliteSprite = GameRes.instance.sprite_whlite;
+        this.whliteDownSprite = GameRes.instance.sprite_whlite_down;
+        this.DBclickSprite = GameRes.instance.sprite_twiceBlock;
     }
 
 
