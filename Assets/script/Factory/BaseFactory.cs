@@ -8,7 +8,7 @@ public abstract class BaseFactory
 
     private bool canGen = true;
 
-    private GameObject rowPrefab;
+    protected GameObject rowPrefab;
 
     public GameObject Build()
     {
@@ -31,13 +31,12 @@ public abstract class BaseFactory
             Camera.main.transform.position.z);
 
         GameObject[] os;
-        int num;
-        BuildRowBlocks(out os,out num);
+        BuildRowBlocks(out os);
         o.GetComponent<Row>().Init(os);
         return o;
     }
 
-    public abstract void BuildRowBlocks(out GameObject[] objs,out int n);//抽象生成方块方法
+    public abstract void BuildRowBlocks(out GameObject[] objs);//抽象生成方块方法
 
     public void GameStateChange(MyUtils.GameState state)
     {

@@ -5,10 +5,19 @@ using System.Collections.Generic;
 public class MainGameController : MonoBehaviour {
 
     public static MainGameController instance;
-    private MoveManager moveManager;
+    
 
     public UILabel finalScore;
     public GameObject container;
+
+    public BaseFactory factory;
+
+    public GameObject rowPrefab;
+    public GameObject block;
+
+    public Sprite blackSprite;
+    public Sprite whliteSprite;
+    public Sprite whliteDownSprite;
 
     private MyUtils.GameState gobalState = MyUtils.GameState.Ing;
 
@@ -17,12 +26,12 @@ public class MainGameController : MonoBehaviour {
 
 	void Start () {
         instance = this;
-    
+        factory = new ClassicalFactory(rowPrefab, block, blackSprite, whliteSprite, whliteDownSprite);
 	}
 	
 	// Update is called once per frame
 	void Update () {
-
+        factory.Build();
 	
 	}
 
@@ -54,6 +63,7 @@ public class MainGameController : MonoBehaviour {
 
     void sendStateChangeMsg()
     {
+        factory.GameStateChange(gobalState);
         SendMessage("GameStateChange", gobalState);
     }
 

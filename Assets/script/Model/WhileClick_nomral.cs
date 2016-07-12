@@ -11,10 +11,11 @@ public class WhileClick_Nomral : ClickInterface {
     }
     public void OnClick()
     {
-        MainGameController.instance.EndGame();
+        
         parent.GetComponent<TweenAlpha>().style = TweenAlpha.Style.PingPong;
         parent.GetComponent<TweenAlpha>().gameObject.SetActive(true);
         parent.GetComponent<TweenAlpha>().PlayForward();
+        MainGameController.instance.EndGame();
     }
     public void OnNoClick()
     {
