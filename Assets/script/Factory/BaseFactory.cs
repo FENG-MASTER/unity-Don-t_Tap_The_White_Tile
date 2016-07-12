@@ -10,6 +10,12 @@ public abstract class BaseFactory
 
     protected GameObject rowPrefab;
 
+    public BaseFactory(GameObject rowPrefab)
+    {
+        this.rowPrefab = rowPrefab;
+
+    }
+
     public GameObject Build()
     {
         if(!canGen){

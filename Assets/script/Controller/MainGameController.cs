@@ -18,6 +18,7 @@ public class MainGameController : MonoBehaviour {
     public Sprite blackSprite;
     public Sprite whliteSprite;
     public Sprite whliteDownSprite;
+    public Sprite DBSprite;
 
     private MyUtils.GameState gobalState = MyUtils.GameState.Ing;
 
@@ -26,7 +27,8 @@ public class MainGameController : MonoBehaviour {
 
 	void Start () {
         instance = this;
-        factory = new ClassicalFactory(rowPrefab, block, blackSprite, whliteSprite, whliteDownSprite);
+      //  factory = new ClassicalFactory(rowPrefab, block, blackSprite, whliteSprite, whliteDownSprite);
+        factory = new DBlclickFactory(rowPrefab, block, blackSprite, whliteSprite, whliteDownSprite, DBSprite);
 	}
 	
 	// Update is called once per frame

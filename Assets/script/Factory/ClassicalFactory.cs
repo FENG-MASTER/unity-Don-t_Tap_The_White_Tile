@@ -10,7 +10,9 @@ public  class ClassicalFactory :BaseFactory {
     public Sprite blackSprite;
     public Sprite whliteDownSprite;
 
-    public ClassicalFactory(GameObject row, GameObject block, Sprite blackSprite, Sprite whliteSprite,Sprite whliteDownSprite)
+    public ClassicalFactory(GameObject row, 
+        GameObject block, Sprite blackSprite, 
+        Sprite whliteSprite,Sprite whliteDownSprite):base(row)
     {
         this.rowPrefab = row;
         this.block = block;
