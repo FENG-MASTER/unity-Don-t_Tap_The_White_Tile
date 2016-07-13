@@ -9,16 +9,9 @@ public class MainGameController : MonoBehaviour {
 
     public UILabel finalScore;
     public GameObject container;
+    public UILabel timer;
 
-    public BaseFactory factory;
-
-    public GameObject rowPrefab;
-    public GameObject block;
-
-    public Sprite blackSprite;
-    public Sprite whliteSprite;
-    public Sprite whliteDownSprite;
-    public Sprite DBSprite;
+    private BaseFactory factory;//工厂类
 
     private MyUtils.GameState gobalState = MyUtils.GameState.Ing;
 
@@ -27,23 +20,45 @@ public class MainGameController : MonoBehaviour {
     void Awake()
     {
         instance = this;
-        int type=PlayerPrefs.GetInt("GameType");
-        switch(type){
+      
+
+    }
+	void Start () {
+        int type = PlayerPrefs.GetInt("GameType");
+        switch (type)
+        {
             case MyUtils.GameType.Classics:
                 factory = new ClassicalFactory();
                 break;
             case MyUtils.GameType.DBclick:
                 factory = new DBlclickFactory();
                 break;
+
+            case MyUtils.GameType.Timer:
+                factory = new ClassicalFactory();
+                int scoreNeeded = 30;
+                GameTimer.Timer t = new GameTimer.Timer(10, timer);
+                t.loop = true;
+                t.Run = delegate()
+                {
+                    if (Score.instacne.scoreVal > scoreNeeded)
+                    {
+                        scoreNeeded += 10;
+                    }
+                    else
+                    {
+                        t.loop = false;
+                        t.StopTiming();
+                        EndGame();
+                    }
+                };
+                GameTimer.instance.Add(t);
+                break;
             default:
                 factory = new ClassicalFactory();
                 break;
         }
-
-    }
-	void Start () {
-       
-
+     
       
 	}
 	

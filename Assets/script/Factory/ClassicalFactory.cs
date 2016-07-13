@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public  class ClassicalFactory :BaseFactory {
+public class ClassicalFactory :BaseFactory {
 
     public GameObject block;
 

@@ -10,6 +10,7 @@ public class BlackClick_nomral : ClickInterface {
 
     public BlackClick_nomral(GameObject parent)
     {
+        
         this.parent = parent;
         sound = GameRes.instance.sound_block_click;
     }
@@ -22,6 +23,7 @@ public class BlackClick_nomral : ClickInterface {
         //播放消失动画
         parent.GetComponent<TweenAlpha>().gameObject.SetActive(true);
         parent.GetComponent<TweenAlpha>().PlayForward();
+       
     }
     public  void OnNoClick()
      {

@@ -9,6 +9,8 @@ public class MyUtils : MonoBehaviour {
     {
         public const int Classics = 1;
         public const int DBclick = 2;
+        public const int Timer = 3;
+
     }
 
 	// Use this for initialization

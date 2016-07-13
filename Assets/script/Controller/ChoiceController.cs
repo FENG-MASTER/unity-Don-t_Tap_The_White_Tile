@@ -27,6 +27,14 @@ public class ChoiceController : MonoBehaviour {
         Application.LoadLevelAsync(2);
     }
 
+    public void StartTimerGame()
+    {
+        //计时模式
+        PlayerPrefs.SetInt("GameType", MyUtils.GameType.Timer);
+        Application.LoadLevelAsync(2);
+
+    }
+
 
 
 }
