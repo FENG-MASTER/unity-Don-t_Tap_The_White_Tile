@@ -33,7 +33,7 @@ public abstract class BaseFactory
 
         GameObject o = GameObject.Instantiate<GameObject>(rowPrefab);
         o.transform.position = new Vector3(Camera.main.transform.position.x,
-            Camera.main.transform.position.y + Screen.height / 100.0f / 2.0f + 3.0f * BaseBlock.heigh / 2f - 0.25f,
+            Camera.main.transform.position.y + Screen.height / 100.0f / 2.0f + 3f*BaseBlock.heigh/2f ,
             Camera.main.transform.position.z);
 
         GameObject[] os;

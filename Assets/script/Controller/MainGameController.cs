@@ -12,16 +12,15 @@ public class MainGameController : MonoBehaviour {
     public UILabel timer;
 
     private BaseFactory factory;//工厂类
+    private BaseGameController gamecontroller;
 
-    private MyUtils.GameState gobalState = MyUtils.GameState.Ing;
+    public MyUtils.GameState gobalState = MyUtils.GameState.Ing;
 
 	// Use this for initialization
 
     void Awake()
     {
         instance = this;
-      
-
     }
 	void Start () {
         int type = PlayerPrefs.GetInt("GameType");
@@ -29,47 +28,36 @@ public class MainGameController : MonoBehaviour {
         {
             case MyUtils.GameType.Classics:
                 factory = new ClassicalFactory();
+                gamecontroller = new ClassiaclGameController(finalScore,container,factory);
                 break;
             case MyUtils.GameType.DBclick:
                 factory = new DBlclickFactory();
+                gamecontroller = new ClassiaclGameController(finalScore, container, factory);
                 break;
-
             case MyUtils.GameType.Timer:
                 factory = new ClassicalFactory();
-                int scoreNeeded = 30;
-                GameTimer.Timer t = new GameTimer.Timer(10, timer);
-                t.loop = true;
-                t.Run = delegate()
-                {
-                    if (Score.instacne.scoreVal > scoreNeeded)
-                    {
-                        scoreNeeded += 10;
-                    }
-                    else
-                    {
-                        t.loop = false;
-                        t.StopTiming();
-                        EndGame();
-                    }
-                };
-                GameTimer.instance.Add(t);
+                gamecontroller = new TimerGameController(finalScore, container, timer, factory);
                 break;
             default:
                 factory = new ClassicalFactory();
+                gamecontroller = new ClassiaclGameController(finalScore, container, factory);
                 break;
         }
+
+        gamecontroller.startGame();
      
       
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        factory.Build();
-	
+        gamecontroller.Update();
 	}
 
     public void RestartGame()
     {
+        gamecontroller.startGame();
+        return;
         GameObject.Find("manager").GetComponent<MoveManager>().ReStart();
         TweenPosition p = container.GetComponent<TweenPosition>();//播放动画
         p.PlayReverse();
@@ -81,6 +69,7 @@ public class MainGameController : MonoBehaviour {
 
     public void EndGame()
     {
+        gamecontroller.StopGame();
         if (gobalState == MyUtils.GameState.End)
         {
             return;
@@ -94,7 +83,7 @@ public class MainGameController : MonoBehaviour {
 
     }
 
-    void sendStateChangeMsg()
+   public void sendStateChangeMsg()
     {
         factory.GameStateChange(gobalState);
         SendMessage("GameStateChange", gobalState);

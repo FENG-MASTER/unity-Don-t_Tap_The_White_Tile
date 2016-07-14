@@ -16,6 +16,8 @@ public class BlackClick_nomral : ClickInterface {
     }
     public  void OnClick()
     {
+        if(hasClicked)return;
+
         Score.instacne.AddScore(1);
         hasClicked = true;
 

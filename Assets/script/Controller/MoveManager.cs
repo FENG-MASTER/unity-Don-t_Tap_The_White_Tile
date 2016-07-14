@@ -4,12 +4,19 @@ using System.Collections.Generic;
 
 public class MoveManager : MonoBehaviour
 {
+    public static MoveManager instance;
 
     public List<GameObject>  blockList = new List<GameObject>();
 
     public float speed = 0.2f;
 
     private bool isMove=true;
+
+    void Awake()
+    {
+        instance = this;
+
+    }
 
     // Use this for initialization
     void Start()
@@ -28,7 +35,6 @@ public class MoveManager : MonoBehaviour
         Vector3 old;
         for (int i = 0; i < blockList.Count; i++)
         {
-
             //这里采用了跟屁虫的做法,后面的方块全部跟着第一个方块,这样就可以保持整齐
             old = blockList[i].transform.position;
             if(i==0){
@@ -39,13 +45,6 @@ public class MoveManager : MonoBehaviour
                 blockList[i].transform.position = new Vector3(old.x, blockList[i - 1].transform.position.y + BaseBlock.heigh, old.z);
             }
 
-
-            if (blockList[i].GetComponent<Row>().state == Row.State_Pos.Out)
-            {
-                blockList[i].GetComponent<Row>().DestroyChildren();
-                Destroy(blockList[i]);
-                blockList.Remove(blockList[i]);
-            }
         }
 
     }
