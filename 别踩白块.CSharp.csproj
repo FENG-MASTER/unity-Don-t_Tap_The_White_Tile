@@ -200,14 +200,12 @@
     <Compile Include="Assets\NGUI\Scripts\UI\UITexture.cs" />
     <Compile Include="Assets\NGUI\Scripts\UI\UITooltip.cs" />
     <Compile Include="Assets\NGUI\Scripts\UI\UIViewport.cs" />
-    <Compile Include="Assets\TimerGameController.cs" />
     <Compile Include="Assets\script\Controller\ChoiceController.cs" />
     <Compile Include="Assets\script\Controller\GameController\BaseGameController.cs" />
     <Compile Include="Assets\script\Controller\GameController\ClassiaclGameController.cs" />
+    <Compile Include="Assets\script\Controller\GameController\MainGameController.cs" />
+    <Compile Include="Assets\script\Controller\GameController\TimerGameController.cs" />
     <Compile Include="Assets\script\Controller\GameTimer.cs" />
-    <Compile Include="Assets\script\Controller\JumpMoveManager.cs" />
-    <Compile Include="Assets\script\Controller\MainGameController.cs" />
-    <Compile Include="Assets\script\Controller\MoveManager.cs" />
     <Compile Include="Assets\script\Controller\RecoveryManager.cs" />
     <Compile Include="Assets\script\Controller\ScreenManeger.cs" />
     <Compile Include="Assets\script\Controller\StartGameManager.cs" />
@@ -221,8 +219,13 @@
     <Compile Include="Assets\script\Model\MultipleClick.cs" />
     <Compile Include="Assets\script\Model\Row.cs" />
     <Compile Include="Assets\script\Model\WhileClick_nomral.cs" />
+    <Compile Include="Assets\script\MoveManager\BaseMoveManager.cs" />
+    <Compile Include="Assets\script\MoveManager\ClassicalMoveManager.cs" />
+    <Compile Include="Assets\script\MoveManager\ClickMoveManager.cs" />
     <Compile Include="Assets\script\MyUtils.cs" />
     <Compile Include="Assets\script\Score.cs" />
+    <Compile Include="Assets\script\obsolete\JumpMoveManager.cs" />
+    <Compile Include="Assets\script\obsolete\MoveManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\NGUI\Examples\Atlases\Fantasy\Fantasy Font - Normal.txt" />

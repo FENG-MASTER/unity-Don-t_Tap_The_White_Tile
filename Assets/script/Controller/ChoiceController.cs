@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class ChoiceController : MonoBehaviour {
 
@@ -17,21 +18,21 @@ public class ChoiceController : MonoBehaviour {
     { 
         //开始经典模式
         PlayerPrefs.SetInt("GameType",MyUtils.GameType.Classics);
-        Application.LoadLevelAsync(2);
+        SceneManager.LoadSceneAsync(2);
     }
 
     public void StartDBclickGame()
     {
         //开始双击模式?...名字没想好QAQ
         PlayerPrefs.SetInt("GameType", MyUtils.GameType.DBclick);
-        Application.LoadLevelAsync(2);
+        SceneManager.LoadSceneAsync(2);
     }
 
     public void StartTimerGame()
     {
         //计时模式
         PlayerPrefs.SetInt("GameType", MyUtils.GameType.Timer);
-        Application.LoadLevelAsync(2);
+        SceneManager.LoadSceneAsync(2);
 
     }
 

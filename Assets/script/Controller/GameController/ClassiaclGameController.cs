@@ -18,7 +18,6 @@ public class ClassiaclGameController : BaseGameController {
 
     public override void startGame()
     {
-        GameObject.Find("manager").GetComponent<MoveManager>().ReStart();
         TweenPosition p = container.GetComponent<TweenPosition>();//播放动画
         p.PlayReverse();
         MainGameController.instance.gobalState = MyUtils.GameState.Ing;
@@ -43,6 +42,6 @@ public class ClassiaclGameController : BaseGameController {
         finalScore.text = "最终分数:" + Score.instacne.scoreVal;
         container.SetActive(true);
         container.GetComponent<TweenPosition>().PlayForward();
-        GameObject.Find("manager").GetComponent<MoveManager>().Pause();
+  
     }
 }
