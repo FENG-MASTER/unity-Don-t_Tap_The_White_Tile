@@ -60,7 +60,6 @@ public class MainGameController : MonoBehaviour {
         gamecontroller.Update();
         moveManager.Update();
         if(Input.GetKeyDown(KeyCode.Escape)){
-          
             SceneManager.LoadSceneAsync(1);
         }
 
