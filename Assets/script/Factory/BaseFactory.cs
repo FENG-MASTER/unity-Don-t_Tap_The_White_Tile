@@ -44,6 +44,16 @@ public abstract class BaseFactory
 
     public abstract void BuildRowBlocks(out GameObject[] objs);//抽象生成方块方法
 
+    public void Pause()
+    {
+        canGen = false;
+    }
+
+    public void Start()
+    {
+        canGen = true;
+    }
+
     public void GameStateChange(MyUtils.GameState state)
     {
 

@@ -36,6 +36,26 @@ public class ChoiceController : MonoBehaviour {
 
     }
 
+    public void StartRollerCoasterGame() {
+        //过山车模式
+        PlayerPrefs.SetInt("GameType", MyUtils.GameType.RollerCoaster);
+        SceneManager.LoadSceneAsync(2);
+    }
+
+    public void StartTwoHandGame()
+    {
+        //双手模式
+        PlayerPrefs.SetInt("GameType", MyUtils.GameType.TwoHand);
+        SceneManager.LoadSceneAsync(2);
+    }
+
+    public void StartPlusOneGame()
+    {
+        //+1模式
+        PlayerPrefs.SetInt("GameType", MyUtils.GameType.PlusOne);
+        SceneManager.LoadSceneAsync(2);
+    }
+
 
 
 }

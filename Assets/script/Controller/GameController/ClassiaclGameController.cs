@@ -26,11 +26,7 @@ public class ClassiaclGameController : BaseGameController {
         Score.instacne.scoreVal = 0;
     }
 
-    public override void pauseGame()
-    {
-        throw new System.NotImplementedException();
-    }
-
+  
     public override void StopGame()
     {
         if (MainGameController.instance.gobalState == MyUtils.GameState.End)

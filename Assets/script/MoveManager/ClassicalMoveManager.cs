@@ -28,6 +28,16 @@ public class ClassicalMoveManager :BaseMoveManager{
         }
     }
 
+    public override void Start()
+    {
+        base.Start();
+        for (int i = 0; i < blockList.Count; i++)
+        {
+            blockList[i].GetComponent<Row>().StartTouch();
+        }
+
+    }
+
     public override void Pause()
     {
         speed = 0.0f;
@@ -39,13 +49,13 @@ public class ClassicalMoveManager :BaseMoveManager{
 
     }
 
-    private float getSpeed(int score)
+    public virtual float getSpeed(int score)
     {
 
         if (score < 200)
         {
             score += ((int)(Random.value * 100) % 10);
-            return (0.0025f * score + 1) * BaseBlock.heigh / 30f;
+            return (0.0030f * score + 1) * BaseBlock.heigh / 30f;
         }
         else
         {

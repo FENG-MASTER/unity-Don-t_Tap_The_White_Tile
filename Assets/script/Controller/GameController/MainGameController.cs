@@ -11,12 +11,15 @@ public class MainGameController : MonoBehaviour {
     public UILabel finalScore;
     public GameObject container;
     public UILabel timer;
+    public UILabel pauseLabel;
 
     private BaseFactory factory;//工厂类
     private BaseGameController gamecontroller;
     private BaseMoveManager moveManager;//移动控制器
 
     public MyUtils.GameState gobalState = MyUtils.GameState.Ing;
+
+    private bool pause = false;
 
 	// Use this for initialization
 
@@ -43,6 +46,23 @@ public class MainGameController : MonoBehaviour {
                 gamecontroller = new TimerGameController(finalScore, container, timer, factory);
                 moveManager = new ClickMoveManager();
                 break;
+            case MyUtils.GameType.RollerCoaster:
+                 factory = new ClassicalFactory();
+                 gamecontroller = new ClassiaclGameController(finalScore, container, factory);
+                moveManager = new RandomSpeedMoveManager();
+                break;
+
+            case MyUtils.GameType.TwoHand:
+                factory = new ClassicalFactory(6,2);
+                gamecontroller = new ClassiaclGameController(finalScore,container,factory);
+                moveManager = new ClassicalMoveManager();
+                break;
+
+            case MyUtils.GameType.PlusOne:
+                factory = new ClassicalFactory(5,1);
+                gamecontroller = new ClassiaclGameController(finalScore,container,factory);
+                moveManager = new ClassicalMoveManager();
+                break;
             default:
                 factory = new ClassicalFactory();
                 gamecontroller = new ClassiaclGameController(finalScore, container, factory);
@@ -59,17 +79,40 @@ public class MainGameController : MonoBehaviour {
 	void Update () {
         gamecontroller.Update();
         moveManager.Update();
+
         if(Input.GetKeyDown(KeyCode.Escape)){
-            SceneManager.LoadSceneAsync(1);
+            if(gobalState==MyUtils.GameState.Ing){
+                PauseGame();            
+            }
+           
         }
 
 	}
 
+    public void PauseGame()
+    {
+        if(pause){
+            gamecontroller.Start();
+            moveManager.Start();
+            pause = false;
+            HidePause();
+        }
+        else
+        {
+            gamecontroller.Pause();
+            moveManager.Pause();
+            ShowPause();
+            pause = true;
+        }
+      
+    }
+
     public void RestartGame()
     {
-        gamecontroller.startGame();
         DestroyAllBlock();
+        gamecontroller.startGame();
         moveManager.Start();
+        pause = false;
 
     }
 
@@ -90,18 +133,6 @@ public class MainGameController : MonoBehaviour {
     {
         gamecontroller.StopGame();
         moveManager.Pause();
-        return;
-        if (gobalState == MyUtils.GameState.End)
-        {
-            return;
-        }
-        gobalState = MyUtils.GameState.End;
-        sendStateChangeMsg();
-        finalScore.text = "最终分数:" + Score.instacne.scoreVal;
-        container.SetActive(true);
-        container.GetComponent<TweenPosition>().PlayForward();
-
-
     }
 
    public void sendStateChangeMsg()
@@ -109,5 +140,16 @@ public class MainGameController : MonoBehaviour {
         factory.GameStateChange(gobalState);
         SendMessage("GameStateChange", gobalState);
     }
+
+
+   private void ShowPause() {
+       pauseLabel.gameObject.SetActive(true);
+       pauseLabel.GetComponent<TweenAlpha>().PlayForward();
+   }
+
+   private void HidePause()
+   {
+       pauseLabel.GetComponent<TweenAlpha>().PlayReverse();
+   }
 
 }

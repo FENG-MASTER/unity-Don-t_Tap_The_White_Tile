@@ -5,9 +5,15 @@ public abstract class BaseGameController{
 
     protected BaseFactory factory;//工厂类
 
-
     public abstract void startGame();
-    public abstract void pauseGame();
+    public virtual void Pause(){
+       factory.Pause();
+    }
+
+    public virtual void Start()
+    {
+        factory.Start();
+    }
     public abstract void StopGame();
     
     public void Update()

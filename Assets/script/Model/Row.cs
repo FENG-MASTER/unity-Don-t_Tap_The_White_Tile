@@ -22,11 +22,6 @@ public class Row : MonoBehaviour
         hasInit = true;
     }
 
-    // Use this for initialization
-    void Start()
-    {
-
-    }
 
     // Update is called once per frame
     void Update()
@@ -43,7 +38,6 @@ public class Row : MonoBehaviour
         }
 
 
-        
 
     }
 
@@ -73,6 +67,14 @@ public class Row : MonoBehaviour
             blocks[i].GetComponent<BoxCollider>().enabled = false;//阻断点击事件
         }
        
+    }
+
+    public void StartTouch()
+    {
+        for (int i = 0; i < blocks.Length; i++)
+        {
+            blocks[i].GetComponent<BoxCollider>().enabled = true;//开启点击事件
+        }
     }
 
     private bool isMoving()

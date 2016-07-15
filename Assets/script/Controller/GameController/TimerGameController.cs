@@ -18,6 +18,18 @@ public class TimerGameController : BaseGameController {
 
     }
 
+    public override void Pause()
+    {
+        base.Pause();
+        t.PauseTiming();
+    }
+
+    public override void Start()
+    {
+        base.Start();
+        t.StartTiming();
+    }
+
 
     public override void startGame()
     {
@@ -49,10 +61,7 @@ public class TimerGameController : BaseGameController {
         Score.instacne.scoreVal = 0;
     }
 
-    public override void pauseGame()
-    {
-        throw new System.NotImplementedException();
-    }
+   
 
     public override void StopGame()
     {

@@ -14,9 +14,20 @@ public class ClickMoveManager : BaseMoveManager {
         }
     }
 
+    public override void Start()
+    {
+        base.Start();
+        blockList = new List<GameObject>(GameObject.FindGameObjectsWithTag("Row"));
+        for (int i = 0; i < blockList.Count; i++)
+        {
+            blockList[i].GetComponent<Row>().StartTouch();
+        }
+    }
+
     public override void Pause()
     {
         isMove = false;
+        blockList = new List<GameObject>(GameObject.FindGameObjectsWithTag("Row"));
         for (int i = 0; i < blockList.Count; i++)
         {
             blockList[i].GetComponent<Row>().StopTouch();
