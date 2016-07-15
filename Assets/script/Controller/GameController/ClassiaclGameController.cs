@@ -6,12 +6,14 @@ public class ClassiaclGameController : BaseGameController {
 
     private UILabel finalScore;
     private GameObject container;
+    private UILabel highestScore;
 
-    public ClassiaclGameController(UILabel finalScore, GameObject container,BaseFactory f)
+    public ClassiaclGameController(UILabel finalScore, UILabel highestScore, GameObject container, BaseFactory f)
     {
         this.finalScore = finalScore;
         this.container = container;
         this.factory = f;
+        this.highestScore = highestScore;
 
     }
 
@@ -36,6 +38,7 @@ public class ClassiaclGameController : BaseGameController {
         MainGameController.instance.gobalState = MyUtils.GameState.End;
         MainGameController.instance.sendStateChangeMsg();
         finalScore.text = "最终分数:" + Score.instacne.scoreVal;
+        highestScore.text = "历史最高分:" + Score.instacne.GetCurrentHighestScore();
         container.SetActive(true);
         container.GetComponent<TweenPosition>().PlayForward();
   

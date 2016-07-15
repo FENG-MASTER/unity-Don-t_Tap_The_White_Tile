@@ -12,6 +12,7 @@ public class MainGameController : MonoBehaviour {
     public GameObject container;
     public UILabel timer;
     public UILabel pauseLabel;
+    public UILabel highestScore;
 
     private BaseFactory factory;//工厂类
     private BaseGameController gamecontroller;
@@ -33,39 +34,39 @@ public class MainGameController : MonoBehaviour {
         {
             case MyUtils.GameType.Classics:
                 factory = new ClassicalFactory();
-                gamecontroller = new ClassiaclGameController(finalScore,container,factory);
+                gamecontroller = new ClassiaclGameController(finalScore, highestScore, container, factory);
                 moveManager = new ClassicalMoveManager();
                 break;
             case MyUtils.GameType.DBclick:
                 factory = new DBlclickFactory();
-                gamecontroller = new ClassiaclGameController(finalScore, container, factory);
+                gamecontroller = new ClassiaclGameController(finalScore, highestScore, container, factory);
                 moveManager = new ClassicalMoveManager();
                 break;
             case MyUtils.GameType.Timer:
                 factory = new ClassicalFactory();
-                gamecontroller = new TimerGameController(finalScore, container, timer, factory);
+                gamecontroller = new TimerGameController(finalScore, highestScore, container, timer, factory);
                 moveManager = new ClickMoveManager();
                 break;
             case MyUtils.GameType.RollerCoaster:
                  factory = new ClassicalFactory();
-                 gamecontroller = new ClassiaclGameController(finalScore, container, factory);
+                 gamecontroller = new ClassiaclGameController(finalScore, highestScore, container, factory);
                 moveManager = new RandomSpeedMoveManager();
                 break;
 
             case MyUtils.GameType.TwoHand:
                 factory = new ClassicalFactory(6,2);
-                gamecontroller = new ClassiaclGameController(finalScore,container,factory);
+                gamecontroller = new ClassiaclGameController(finalScore, highestScore, container, factory);
                 moveManager = new ClassicalMoveManager();
                 break;
 
             case MyUtils.GameType.PlusOne:
                 factory = new ClassicalFactory(5,1);
-                gamecontroller = new ClassiaclGameController(finalScore,container,factory);
+                gamecontroller = new ClassiaclGameController(finalScore, highestScore, container, factory);
                 moveManager = new ClassicalMoveManager();
                 break;
             default:
                 factory = new ClassicalFactory();
-                gamecontroller = new ClassiaclGameController(finalScore, container, factory);
+                gamecontroller = new ClassiaclGameController(finalScore, highestScore, container, factory);
                 moveManager = new ClassicalMoveManager();
                 break;
         }
@@ -82,7 +83,11 @@ public class MainGameController : MonoBehaviour {
 
         if(Input.GetKeyDown(KeyCode.Escape)){
             if(gobalState==MyUtils.GameState.Ing){
-                PauseGame();            
+                PauseGame();
+            }
+            else
+            {
+                SceneManager.LoadSceneAsync(1);
             }
            
         }
@@ -131,9 +136,9 @@ public class MainGameController : MonoBehaviour {
 
     public void EndGame()
     {
-        Score.instacne.SaveCurentScore();
         gamecontroller.StopGame();
         moveManager.Pause();
+        Score.instacne.SaveCurentScore();
     }
 
    public void sendStateChangeMsg()

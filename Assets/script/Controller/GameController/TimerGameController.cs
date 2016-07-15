@@ -5,16 +5,18 @@ public class TimerGameController : BaseGameController {
 
     private UILabel timer;
     private UILabel finalScore;
+    private UILabel highestScore;
     private GameObject container;
 
     GameTimer.Timer t;
 
-    public TimerGameController(UILabel finalScore, GameObject container,UILabel timer, BaseFactory f)
+    public TimerGameController(UILabel finalScore,UILabel highestScore, GameObject container,UILabel timer, BaseFactory f)
     {
         this.finalScore = finalScore;
         this.container = container;
         this.factory = f;
         this.timer = timer;
+        this.highestScore = highestScore;
 
     }
 
@@ -72,6 +74,7 @@ public class TimerGameController : BaseGameController {
         MainGameController.instance.gobalState = MyUtils.GameState.End;
         MainGameController.instance.sendStateChangeMsg();
         finalScore.text = "最终分数:" + Score.instacne.scoreVal;
+        highestScore.text = "历史最高分:" + Score.instacne.GetCurrentHighestScore();
         container.SetActive(true);
         container.GetComponent<TweenPosition>().PlayForward();
         GameTimer.instance.Remove(t);//记得把计时器移除
