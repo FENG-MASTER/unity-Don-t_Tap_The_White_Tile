@@ -32,6 +32,12 @@ public class StartGameManager : MonoBehaviour {
 
     }
 
+    public void OnRankListButtonClick()
+    {
+        SceneManager.LoadSceneAsync(3);
+
+    }
+
 	// Use this for initialization
 	void Start () {
 	
@@ -39,6 +45,6 @@ public class StartGameManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+       
 	}
 }

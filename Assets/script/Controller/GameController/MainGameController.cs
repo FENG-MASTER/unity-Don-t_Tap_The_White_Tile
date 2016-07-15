@@ -131,6 +131,7 @@ public class MainGameController : MonoBehaviour {
 
     public void EndGame()
     {
+        Score.instacne.SaveCurentScore();
         gamecontroller.StopGame();
         moveManager.Pause();
     }
