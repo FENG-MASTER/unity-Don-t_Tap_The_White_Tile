@@ -215,7 +215,6 @@
     <Compile Include="Assets\script\Factory\DBlclickFactory.cs" />
     <Compile Include="Assets\script\Factory\HalfFactory.cs" />
     <Compile Include="Assets\script\GameRes.cs" />
-    <Compile Include="Assets\script\GuideClick.cs" />
     <Compile Include="Assets\script\Model\BaseBlock.cs" />
     <Compile Include="Assets\script\Model\BlackClick_nomral.cs" />
     <Compile Include="Assets\script\Model\ClickInterface.cs" />
