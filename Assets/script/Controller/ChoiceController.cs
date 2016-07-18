@@ -77,6 +77,27 @@ public class ChoiceController : MonoBehaviour {
         Guide();
     }
 
+    public void StartTwohandRollerCoasterGame()
+    {
+        //双手过山车模式
+        PlayerPrefs.SetInt("GameType", MyUtils.GameType.TwoHand_RollerCoaster);
+        Guide();
+    }
+
+    public void StartReverseGame()
+    {
+        //相反模式
+        PlayerPrefs.SetInt("GameType", MyUtils.GameType.Reverse);
+        Guide();
+    }
+
+    public void StartChaosGame()
+    {
+        //混沌模式
+        PlayerPrefs.SetInt("GameType", MyUtils.GameType.Chaos);
+        Guide();
+    }
+
     public void Guide()
     {//显示模式介绍
         Texture t = null;

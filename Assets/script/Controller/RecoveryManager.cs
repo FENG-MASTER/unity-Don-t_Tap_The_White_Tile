@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class RecoveryManager : MonoBehaviour {
+    //回收方块控制器,过了边界就清除
 
     public List<GameObject> blockList;
 

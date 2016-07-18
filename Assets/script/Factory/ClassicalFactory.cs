@@ -9,9 +9,13 @@ public class ClassicalFactory :BaseFactory {
     public Sprite whliteSprite;
     public Sprite blackSprite;
     public Sprite whliteDownSprite;
+    public Sprite transitionSprite;
 
     private int numPerRow;
     private int blackNum;
+
+    private bool isReverse=false;
+    private bool isJustReverse = false;
 
     public ClassicalFactory(int numPerRow,int blackNum)
     {
@@ -20,6 +24,7 @@ public class ClassicalFactory :BaseFactory {
         this.whliteSprite = GameRes.instance.sprite_whlite;
         this.blackSprite = GameRes.instance.sprite_black;
         this.whliteDownSprite = GameRes.instance.sprite_whlite_down;
+        this.transitionSprite = GameRes.instance.sprite_transition;
         this.numPerRow = numPerRow;
         this.blackNum = blackNum;
     }
@@ -39,37 +44,45 @@ public class ClassicalFactory :BaseFactory {
         int[] arr = GetRandomArray(numPerRow);
         for (int i = 0; i < objs.Length;i++ )
         {
-            if(i<blackNum){
+            if(i<blackNum){//这里是生成黑方块的(需要点击)
                 objs[arr[i]] = GameObject.Instantiate<GameObject>(block);
-                objs[arr[i]].GetComponent<BaseBlock>().Init(blackSprite, blackSprite, new BlackClick_nomral(objs[arr[i]]), objs.Length);
+                if(isJustReverse){
+                    objs[arr[i]].GetComponent<BaseBlock>().Init(transitionSprite, blackSprite, new BlackClick_nomral(objs[arr[i]]), objs.Length);
+                    
+                }else if(isReverse){
+                    objs[arr[i]].GetComponent<BaseBlock>().Init(whliteSprite, blackSprite, new BlackClick_nomral(objs[arr[i]]).setReversePlay(true), objs.Length);
+
+                }
+                else
+                {
+                    objs[arr[i]].GetComponent<BaseBlock>().Init(blackSprite, blackSprite, new BlackClick_nomral(objs[arr[i]]), objs.Length);
+                }
             }
             else
-            {
+            {//这里是生成白色方块(不能点击)
                 objs[arr[i]] = GameObject.Instantiate<GameObject>(block);
-                objs[arr[i]].GetComponent<BaseBlock>().Init(whliteSprite, whliteDownSprite, new WhileClick_Nomral(objs[arr[i]]), objs.Length);
+                if(isReverse){
+                    objs[arr[i]].GetComponent<BaseBlock>().Init(blackSprite, whliteDownSprite, new WhileClick_Nomral(objs[arr[i]]), objs.Length);
+                }
+                else
+                {
+                    objs[arr[i]].GetComponent<BaseBlock>().Init(whliteSprite, whliteDownSprite, new WhileClick_Nomral(objs[arr[i]]), objs.Length);
+                }
  
 
             }
 
-
         }
+
+        isJustReverse = false;
         return;
 
-        int Rnum = (int)(Random.value * 100) % numPerRow;
-        objs[Rnum] = GameObject.Instantiate<GameObject>(block);
-        objs[Rnum].GetComponent<BaseBlock>().Init(blackSprite, blackSprite, new BlackClick_nomral(objs[Rnum]), objs.Length);
-        
+    }
 
-        for (int i = 0; i < objs.Length; i++)
-        {
-            if (i != Rnum)
-            {
-                objs[i] = GameObject.Instantiate<GameObject>(block);
-                objs[i].GetComponent<BaseBlock>().Init(whliteSprite, whliteDownSprite, new WhileClick_Nomral(objs[i]), objs.Length);
-            }
-        }
-        
-
+    public void SetReverse(bool isReverse)
+    {
+        this.isReverse = isReverse;
+        isJustReverse = true;
     }
 
 

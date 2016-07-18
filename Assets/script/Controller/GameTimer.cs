@@ -97,7 +97,7 @@ public class GameTimer : MonoBehaviour
 
         public double getLastTime()
         {
-            double lTime = System.Math.Round((startTime+interval-System.DateTime.Now.Ticks) / 10000000f, 2);
+            double lTime = System.Math.Round((startTime+interval-System.DateTime.Now.Ticks) / 10000000f, 1);
             return lTime >= 0 ? lTime : 0;
 
         }

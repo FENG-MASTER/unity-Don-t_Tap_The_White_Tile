@@ -7,6 +7,8 @@ public class ClassicalMoveManager :BaseMoveManager{
     public List<GameObject> blockList = new List<GameObject>();
     public float speed = 0.2f;
 
+    public float multiple = 1;
+
     public override void Move()
     {
         speed = getSpeed(Score.instacne.scoreVal);
@@ -49,17 +51,23 @@ public class ClassicalMoveManager :BaseMoveManager{
 
     }
 
+    public ClassicalMoveManager setMultiple(float m)
+    {
+        multiple = m ;
+        return this;
+    }
+
     public virtual float getSpeed(int score)
     {
 
         if (score < 200)
         {
             score += ((int)(Random.value * 100) % 10);
-            return (0.0030f * score + 1) * BaseBlock.heigh / 30f;
+            return ((0.0030f * score + 1) * BaseBlock.heigh / 30) * multiple;
         }
         else
         {
-            return (0.001f * score + 1) * BaseBlock.heigh / 30f;
+            return ((0.001f * score + 1) * BaseBlock.heigh / 30f) * multiple;
         }
 
 

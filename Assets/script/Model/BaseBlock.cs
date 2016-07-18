@@ -46,14 +46,12 @@ public class BaseBlock : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))//当鼠标左键按下的时候
         {
-            renderer.sprite = sp_down;//改变贴图
+            
             clickIn.OnClick();//执行按键后事件处理
+            renderer.sprite = sp_down;//改变贴图
+            
         }
-        if (Input.GetMouseButtonUp(0))//当鼠标左键松开
-        {
-            renderer.sprite = sp_normal;//改变回原来贴图
 
-        }
 
     }
 

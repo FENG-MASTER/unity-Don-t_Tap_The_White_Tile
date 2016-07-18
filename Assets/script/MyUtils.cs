@@ -15,6 +15,9 @@ public class MyUtils : MonoBehaviour
         public const int TwoHand = 5;
         public const int PlusOne = 6;
         public const int Half = 7;
+        public const int TwoHand_RollerCoaster = 8;
+        public const int Reverse = 9;
+        public const int Chaos = 10;
         public static string getGameTypeName(int type)
         {
             string name = "";
@@ -40,6 +43,15 @@ public class MyUtils : MonoBehaviour
                     break;
                 case MyUtils.GameType.Half:
                     name = "减半模式";
+                    break;
+                case MyUtils.GameType.TwoHand_RollerCoaster:
+                    name = "双手过山车模式";
+                    break;
+                case MyUtils.GameType.Reverse:
+                    name = "相反模式";
+                    break;
+                case MyUtils.GameType.Chaos:
+                    name = "混沌模式";
                     break;
                 default:
                     name = "未知模式,你确定你应该到这里?";

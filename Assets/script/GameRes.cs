@@ -21,6 +21,7 @@ public class GameRes : MonoBehaviour
     public Sprite sprite_whlite;
     public Sprite sprite_whlite_down;
     public Sprite sprite_twiceBlock;
+    public Sprite sprite_transition;
 
 
     void Awake()
@@ -42,7 +43,7 @@ public class GameRes : MonoBehaviour
         sprite_whlite = Resources.Load<Sprite>("texture/whilte");
         sprite_whlite_down = Resources.Load<Sprite>("texture/whilte_down");
         sprite_twiceBlock = Resources.Load<Sprite>("texture/twiceBlock");
-
+        sprite_transition = Resources.Load<Sprite>("texture/transition");
        
     }
 

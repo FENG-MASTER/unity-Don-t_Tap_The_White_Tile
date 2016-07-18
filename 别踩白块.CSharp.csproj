@@ -203,6 +203,7 @@
     <Compile Include="Assets\NGUI\Scripts\UI\UIViewport.cs" />
     <Compile Include="Assets\script\Controller\ChoiceController.cs" />
     <Compile Include="Assets\script\Controller\GameController\BaseGameController.cs" />
+    <Compile Include="Assets\script\Controller\GameController\ChaosGameController.cs" />
     <Compile Include="Assets\script\Controller\GameController\ClassiaclGameController.cs" />
     <Compile Include="Assets\script\Controller\GameController\MainGameController.cs" />
     <Compile Include="Assets\script\Controller\GameController\TimerGameController.cs" />

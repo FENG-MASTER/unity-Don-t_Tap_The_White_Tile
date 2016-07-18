@@ -69,6 +69,25 @@ public class MainGameController : MonoBehaviour {
                 gamecontroller = new ClassiaclGameController(finalScore, highestScore, container, factory);
                 moveManager = new ClassicalMoveManager();
                 break;
+
+            case MyUtils.GameType.TwoHand_RollerCoaster:
+                factory = new ClassicalFactory(6,2);
+                gamecontroller = new ClassiaclGameController(finalScore, highestScore, container, factory);
+                moveManager = new RandomSpeedMoveManager();
+                break;
+
+            case MyUtils.GameType.Reverse:
+                factory = new ClassicalFactory();
+                ((ClassicalFactory)factory).SetReverse(true);
+                gamecontroller = new ClassiaclGameController(finalScore, highestScore, container, factory);
+                moveManager = new ClassicalMoveManager();
+                break;
+
+            case MyUtils.GameType.Chaos://混沌模式
+                factory = new ClassicalFactory(4,2);
+                gamecontroller = new ChaosGameController(finalScore, highestScore, goal, container, timer, factory);
+                moveManager = new ClassicalMoveManager().setMultiple(0.8f);
+                break;
             default:
                 factory = new ClassicalFactory();//默认是经典
                 gamecontroller = new ClassiaclGameController(finalScore, highestScore, container, factory);
@@ -141,6 +160,7 @@ public class MainGameController : MonoBehaviour {
 
     public void EndGame()//游戏结束
     {
+        
         gamecontroller.StopGame();
         moveManager.Pause();
         Score.instacne.SaveCurentScore();//保存一下分数
