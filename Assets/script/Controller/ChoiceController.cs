@@ -11,6 +11,10 @@ public class ChoiceController : MonoBehaviour {
     public Texture Timer;
     public Texture TwoHand;
     public Texture Half;
+    public Texture TwoHand_RollerCoaster;
+    public Texture Reverse;
+    public Texture Chaos;
+
 
 
     public UITexture UIt;
@@ -123,6 +127,15 @@ public class ChoiceController : MonoBehaviour {
                 break;
             case MyUtils.GameType.Half:
                 t = Half;
+                break;
+            case MyUtils.GameType.TwoHand_RollerCoaster:
+                t = TwoHand_RollerCoaster;
+                break;
+            case MyUtils.GameType.Reverse:
+                t = Reverse;
+                break;
+            case MyUtils.GameType.Chaos:
+                t = Chaos;
                 break;
             default:
                 t = Classics;

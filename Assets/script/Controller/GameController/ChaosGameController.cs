@@ -3,7 +3,6 @@ using System.Collections;
 
 public class ChaosGameController : BaseGameController
 {
-
     private UILabel timer;
     private UILabel finalScore;
     private UILabel highestScore;
@@ -53,7 +52,7 @@ public class ChaosGameController : BaseGameController
         {
             isReverse = !isReverse;
             ((ClassicalFactory)factory).SetReverse(isReverse);
-                ShowGoal();
+             ShowGoal();
         };
         GameTimer.instance.Add(t);
 
