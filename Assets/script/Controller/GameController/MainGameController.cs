@@ -14,6 +14,7 @@ public class MainGameController : MonoBehaviour {
     public UILabel pauseLabel;
     public UILabel highestScore;
     public UILabel gameType;
+    public UILabel goal;
 
     private BaseFactory factory;//工厂类
     private BaseGameController gamecontroller;//游戏控制器
@@ -45,7 +46,7 @@ public class MainGameController : MonoBehaviour {
                 break;
             case MyUtils.GameType.Timer://计时模式
                 factory = new ClassicalFactory();
-                gamecontroller = new TimerGameController(finalScore, highestScore, container, timer, factory);
+                gamecontroller = new TimerGameController(finalScore, highestScore, goal, container, timer, factory);
                 moveManager = new ClickMoveManager();
                 break;
             case MyUtils.GameType.RollerCoaster://过山车模式

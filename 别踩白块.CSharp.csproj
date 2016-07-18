@@ -201,7 +201,6 @@
     <Compile Include="Assets\NGUI\Scripts\UI\UITexture.cs" />
     <Compile Include="Assets\NGUI\Scripts\UI\UITooltip.cs" />
     <Compile Include="Assets\NGUI\Scripts\UI\UIViewport.cs" />
-    <Compile Include="Assets\ScoreList.cs" />
     <Compile Include="Assets\script\Controller\ChoiceController.cs" />
     <Compile Include="Assets\script\Controller\GameController\BaseGameController.cs" />
     <Compile Include="Assets\script\Controller\GameController\ClassiaclGameController.cs" />
@@ -216,6 +215,7 @@
     <Compile Include="Assets\script\Factory\DBlclickFactory.cs" />
     <Compile Include="Assets\script\Factory\HalfFactory.cs" />
     <Compile Include="Assets\script\GameRes.cs" />
+    <Compile Include="Assets\script\GuideClick.cs" />
     <Compile Include="Assets\script\Model\BaseBlock.cs" />
     <Compile Include="Assets\script\Model\BlackClick_nomral.cs" />
     <Compile Include="Assets\script\Model\ClickInterface.cs" />
@@ -229,6 +229,7 @@
     <Compile Include="Assets\script\MoveManager\RandomSpeedMoveManager.cs" />
     <Compile Include="Assets\script\MyUtils.cs" />
     <Compile Include="Assets\script\Score.cs" />
+    <Compile Include="Assets\script\ScoreList.cs" />
     <Compile Include="Assets\script\obsolete\JumpMoveManager.cs" />
     <Compile Include="Assets\script\obsolete\MoveManager.cs" />
   </ItemGroup>

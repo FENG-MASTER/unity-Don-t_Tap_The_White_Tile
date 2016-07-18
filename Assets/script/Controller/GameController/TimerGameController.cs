@@ -1,22 +1,29 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class TimerGameController : BaseGameController {
+public class TimerGameController : BaseGameController
+{
 
     private UILabel timer;
     private UILabel finalScore;
     private UILabel highestScore;
     private GameObject container;
+    private UILabel goal;
 
+    private int level = 1;
+    private int scoreNeeded = 25;
     GameTimer.Timer t;
 
-    public TimerGameController(UILabel finalScore,UILabel highestScore, GameObject container,UILabel timer, BaseFactory f)
+    public TimerGameController(UILabel finalScore, UILabel highestScore,UILabel goal,
+        GameObject container, UILabel timer, BaseFactory f)
     {
         this.finalScore = finalScore;
         this.container = container;
         this.factory = f;
         this.timer = timer;
         this.highestScore = highestScore;
+        this.goal = goal;
+        
 
     }
 
@@ -35,15 +42,18 @@ public class TimerGameController : BaseGameController {
 
     public override void startGame()
     {
-        int scoreNeeded = 20;
 
+        level = 1;
         t = new GameTimer.Timer(10, timer);
+        ShowGoal();
         t.loop = true;
         t.Run = delegate()
         {
             if (Score.instacne.scoreVal > scoreNeeded)
             {
-                scoreNeeded += 20;
+                scoreNeeded += 25;
+                scoreNeeded = scoreNeeded + (level+=2);
+                ShowGoal();
             }
             else
             {
@@ -54,7 +64,7 @@ public class TimerGameController : BaseGameController {
         };
         GameTimer.instance.Add(t);
 
-       
+
         TweenPosition p = container.GetComponent<TweenPosition>();//播放动画
         p.PlayReverse();
         MainGameController.instance.gobalState = MyUtils.GameState.Ing;
@@ -63,7 +73,7 @@ public class TimerGameController : BaseGameController {
         Score.instacne.scoreVal = 0;
     }
 
-   
+
 
     public override void StopGame()
     {
@@ -78,6 +88,13 @@ public class TimerGameController : BaseGameController {
         container.SetActive(true);
         container.GetComponent<TweenPosition>().PlayForward();
         GameTimer.instance.Remove(t);//记得把计时器移除
+        level = 1;
+        scoreNeeded = 25;
 
+    }
+
+    private void ShowGoal()
+    {
+        goal.text = "目标:" + scoreNeeded;
     }
 }

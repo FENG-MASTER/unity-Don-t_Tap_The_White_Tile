@@ -48,15 +48,15 @@ public class RandomSpeedMoveManager : ClassicalMoveManager
     private void Init()
     {
         RTimeInterval = Random.Range(10 * perSec, 20 * perSec);
-        PTimeLast = Random.Range(10 * perSec, 20 * perSec);
+        PTimeLast = Random.Range(10 * perSec, 25 * perSec);
         X = 0;
-        RAddSpeed = Random.value/15f *BaseBlock.heigh;
+        RAddSpeed = Random.value/20f *BaseBlock.heigh;
     }
 
     private float GetRandomSpeedAdded()
     {
         if(X<PTimeLast/2f){
-            return 2f * RAddSpeed / PTimeLast;
+            return 2f * RAddSpeed / PTimeLast*X;
         }
         else
         {
