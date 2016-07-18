@@ -5,98 +5,102 @@ using UnityEngine.SceneManagement;
 
 public class MainGameController : MonoBehaviour {
 
-    public static MainGameController instance;
+    public static MainGameController instance;//单例模式实例
     
 
-    public UILabel finalScore;
-    public GameObject container;
-    public UILabel timer;
+    public UILabel finalScore;//显示最终分数的label
+    public GameObject container;//显示分数的父窗口
+    public UILabel timer;//计时器显示label
     public UILabel pauseLabel;
     public UILabel highestScore;
+    public UILabel gameType;
 
     private BaseFactory factory;//工厂类
-    private BaseGameController gamecontroller;
+    private BaseGameController gamecontroller;//游戏控制器
     private BaseMoveManager moveManager;//移动控制器
 
-    public MyUtils.GameState gobalState = MyUtils.GameState.Ing;
+    public MyUtils.GameState gobalState = MyUtils.GameState.Ing;//游戏状态
 
-    private bool pause = false;
-
-	// Use this for initialization
+    private bool pause = false;//是否正在暂停
 
     void Awake()
     {
-        instance = this;
+        instance = this;//设置自己为单例的一个实例
     }
 	void Start () {
+        //根据playprefs传来的参数,确定游戏模式
+
         int type = PlayerPrefs.GetInt("GameType");
         switch (type)
         {
-            case MyUtils.GameType.Classics:
+            case MyUtils.GameType.Classics://经典模式
                 factory = new ClassicalFactory();
                 gamecontroller = new ClassiaclGameController(finalScore, highestScore, container, factory);
                 moveManager = new ClassicalMoveManager();
                 break;
-            case MyUtils.GameType.DBclick:
+            case MyUtils.GameType.DBclick://击破模式
                 factory = new DBlclickFactory();
                 gamecontroller = new ClassiaclGameController(finalScore, highestScore, container, factory);
                 moveManager = new ClassicalMoveManager();
                 break;
-            case MyUtils.GameType.Timer:
+            case MyUtils.GameType.Timer://计时模式
                 factory = new ClassicalFactory();
                 gamecontroller = new TimerGameController(finalScore, highestScore, container, timer, factory);
                 moveManager = new ClickMoveManager();
                 break;
-            case MyUtils.GameType.RollerCoaster:
+            case MyUtils.GameType.RollerCoaster://过山车模式
                  factory = new ClassicalFactory();
                  gamecontroller = new ClassiaclGameController(finalScore, highestScore, container, factory);
                 moveManager = new RandomSpeedMoveManager();
                 break;
-
-            case MyUtils.GameType.TwoHand:
+            case MyUtils.GameType.TwoHand://双手模式
                 factory = new ClassicalFactory(6,2);
                 gamecontroller = new ClassiaclGameController(finalScore, highestScore, container, factory);
                 moveManager = new ClassicalMoveManager();
                 break;
-
-            case MyUtils.GameType.PlusOne:
+            case MyUtils.GameType.PlusOne://加一模式
                 factory = new ClassicalFactory(5,1);
                 gamecontroller = new ClassiaclGameController(finalScore, highestScore, container, factory);
                 moveManager = new ClassicalMoveManager();
                 break;
+            case MyUtils.GameType.Half://减半模式 
+                factory = new HalfFactory();
+                gamecontroller = new ClassiaclGameController(finalScore, highestScore, container, factory);
+                moveManager = new ClassicalMoveManager();
+                break;
             default:
-                factory = new ClassicalFactory();
+                factory = new ClassicalFactory();//默认是经典
                 gamecontroller = new ClassiaclGameController(finalScore, highestScore, container, factory);
                 moveManager = new ClassicalMoveManager();
                 break;
         }
-
-        gamecontroller.startGame();
-        moveManager.Start();
+        gamecontroller.startGame();//控制器启动
+        moveManager.Start();//移动器启动
+        gameType.text = MyUtils.GameType.getGameTypeName(type);
       
 	}
 	
-	// Update is called once per frame
+
 	void Update () {
         gamecontroller.Update();
         moveManager.Update();
 
-        if(Input.GetKeyDown(KeyCode.Escape)){
-            if(gobalState==MyUtils.GameState.Ing){
-                PauseGame();
+        if(Input.GetKeyDown(KeyCode.Escape)){//用户按下返回键
+            if(gobalState==MyUtils.GameState.Ing){//如果正在游戏
+                PauseGame();//就暂停
             }
             else
             {
-                SceneManager.LoadSceneAsync(1);
+                SceneManager.LoadSceneAsync(0);//如果不是正在游戏,那么就是打完这局辣,那就直接退出到开始菜单
             }
            
         }
 
 	}
 
-    public void PauseGame()
+    public void PauseGame()//暂停游戏
     {
-        if(pause){
+        if(pause){//如果已经暂停,那就继续游戏
             gamecontroller.Start();
             moveManager.Start();
             pause = false;
@@ -106,13 +110,13 @@ public class MainGameController : MonoBehaviour {
         {
             gamecontroller.Pause();
             moveManager.Pause();
-            ShowPause();
+            ShowPause();//显示暂停窗口
             pause = true;
         }
       
     }
 
-    public void RestartGame()
+    public void RestartGame()//重新开始游戏
     {
         DestroyAllBlock();
         gamecontroller.startGame();
@@ -134,26 +138,26 @@ public class MainGameController : MonoBehaviour {
         blockList.Clear();
     }
 
-    public void EndGame()
+    public void EndGame()//游戏结束
     {
         gamecontroller.StopGame();
         moveManager.Pause();
-        Score.instacne.SaveCurentScore();
+        Score.instacne.SaveCurentScore();//保存一下分数
     }
 
-   public void sendStateChangeMsg()
+   public void sendStateChangeMsg()//广播一下游戏状态的变更
     {
         factory.GameStateChange(gobalState);
         SendMessage("GameStateChange", gobalState);
     }
 
 
-   private void ShowPause() {
+   private void ShowPause() {//显示暂停窗口
        pauseLabel.gameObject.SetActive(true);
        pauseLabel.GetComponent<TweenAlpha>().PlayForward();
    }
 
-   private void HidePause()
+   private void HidePause()//隐藏暂停窗口
    {
        pauseLabel.GetComponent<TweenAlpha>().PlayReverse();
    }

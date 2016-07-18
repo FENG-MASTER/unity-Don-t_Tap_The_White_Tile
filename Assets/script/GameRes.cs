@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+﻿ using UnityEngine;
 using System.Collections;
 
 public class GameRes : MonoBehaviour
@@ -25,7 +25,7 @@ public class GameRes : MonoBehaviour
 
     void Awake()
     {
-        LoadRes();
+      //  LoadRes();
         instance = this;
 
     }

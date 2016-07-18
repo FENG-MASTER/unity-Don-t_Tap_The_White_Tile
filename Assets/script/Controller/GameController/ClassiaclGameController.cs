@@ -4,7 +4,7 @@ using System.Collections;
 public class ClassiaclGameController : BaseGameController {
 
 
-    private UILabel finalScore;
+    public UILabel finalScore;
     private GameObject container;
     private UILabel highestScore;
 

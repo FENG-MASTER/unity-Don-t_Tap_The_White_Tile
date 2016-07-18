@@ -63,6 +63,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\GuideClick.cs" />
     <Compile Include="Assets\NGUI\Examples\Scripts\InventorySystem\Game\EquipItems.cs" />
     <Compile Include="Assets\NGUI\Examples\Scripts\InventorySystem\Game\EquipRandomItem.cs" />
     <Compile Include="Assets\NGUI\Examples\Scripts\InventorySystem\Game\UICursor.cs" />
@@ -213,6 +214,7 @@
     <Compile Include="Assets\script\Factory\BaseFactory.cs" />
     <Compile Include="Assets\script\Factory\ClassicalFactory.cs" />
     <Compile Include="Assets\script\Factory\DBlclickFactory.cs" />
+    <Compile Include="Assets\script\Factory\HalfFactory.cs" />
     <Compile Include="Assets\script\GameRes.cs" />
     <Compile Include="Assets\script\Model\BaseBlock.cs" />
     <Compile Include="Assets\script\Model\BlackClick_nomral.cs" />
@@ -220,6 +222,7 @@
     <Compile Include="Assets\script\Model\MultipleClick.cs" />
     <Compile Include="Assets\script\Model\Row.cs" />
     <Compile Include="Assets\script\Model\WhileClick_nomral.cs" />
+    <Compile Include="Assets\script\Model\WhileClick_subScore.cs" />
     <Compile Include="Assets\script\MoveManager\BaseMoveManager.cs" />
     <Compile Include="Assets\script\MoveManager\ClassicalMoveManager.cs" />
     <Compile Include="Assets\script\MoveManager\ClickMoveManager.cs" />

@@ -1,10 +1,21 @@
 fileFormatVersion: 2
 guid: 00cadc41856b2ae438747b4cc1f3a9e2
-timeCreated: 1468338321
+timeCreated: 1468803911
 licenseType: Pro
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - sound_block_click: {fileID: 8300000, guid: 3bcc00410210e5940b1061ce9ac361fa, type: 3}
+  - sound_block_click_false: {fileID: 8300000, guid: 6c215cfc9bbfe4840b6070f5454bf7f8,
+      type: 3}
+  - prefab_row: {fileID: 135448, guid: c9cc3859debc64e488abe6e32d6a8e0b, type: 2}
+  - prefab_block: {fileID: 182366, guid: f438504afefc9af42961dab9953447ea, type: 2}
+  - sprite_black: {fileID: 21300000, guid: 734963519d245a948a52d2af00056bb8, type: 3}
+  - sprite_whlite: {fileID: 21300000, guid: d939229032bdf1a42ace135fcc3aa246, type: 3}
+  - sprite_whlite_down: {fileID: 21300000, guid: a5264a5889b179443992f7dffc72c07b,
+      type: 3}
+  - sprite_twiceBlock: {fileID: 21300000, guid: 1022d0011927cae47abb6b9f2875351a,
+      type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
