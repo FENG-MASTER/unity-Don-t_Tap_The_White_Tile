@@ -1,12 +1,23 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using Umeng;
 
 public class StartGameManager : MonoBehaviour {
 
     private bool isAboutShow = false;
     public UILabel aboutDes;
     public UILabel aboutButton;
+
+
+    void Start()
+    {
+       
+        //app key 
+        GA.StartWithAppKeyAndChannelId("578de48ee0f55a0d15001a51", "AppStore");
+
+
+    }
 
     public void OnStartButtonClick()
     {
@@ -29,12 +40,14 @@ public class StartGameManager : MonoBehaviour {
             isAboutShow = true;
         }
 
+       
+
 
     }
 
     public void OnRankListButtonClick()
     {
-        SceneManager.LoadSceneAsync(3);
+       SceneManager.LoadSceneAsync(3);
        
     }
 

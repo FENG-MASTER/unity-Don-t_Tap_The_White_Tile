@@ -29,7 +29,12 @@ public class MainGameController : MonoBehaviour {
         instance = this;//设置自己为单例的一个实例
     }
 	void Start () {
+
+         //app key 
+        Umeng.GA.StartWithAppKeyAndChannelId("578de48ee0f55a0d15001a51", "AppStore");
+
         //根据playprefs传来的参数,确定游戏模式
+
 
         int type = PlayerPrefs.GetInt("GameType");
         switch (type)
@@ -70,13 +75,13 @@ public class MainGameController : MonoBehaviour {
                 moveManager = new ClassicalMoveManager();
                 break;
 
-            case MyUtils.GameType.TwoHand_RollerCoaster:
+            case MyUtils.GameType.TwoHand_RollerCoaster://双手过山车模式
                 factory = new ClassicalFactory(6,2);
                 gamecontroller = new ClassiaclGameController(finalScore, highestScore, container, factory);
-                moveManager = new RandomSpeedMoveManager();
+                moveManager = new RandomSpeedMoveManager().setMultiple(0.8f);
                 break;
 
-            case MyUtils.GameType.Reverse:
+            case MyUtils.GameType.Reverse://相反模式
                 factory = new ClassicalFactory();
                 ((ClassicalFactory)factory).SetReverse(true);
                 gamecontroller = new ClassiaclGameController(finalScore, highestScore, container, factory);
@@ -94,6 +99,9 @@ public class MainGameController : MonoBehaviour {
                 moveManager = new ClassicalMoveManager();
                 break;
         }
+
+        Umeng.GA.StartLevel(type.ToString());//统计
+
         gamecontroller.startGame();//控制器启动
         moveManager.Start();//移动器启动
         gameType.text = MyUtils.GameType.getGameTypeName(type);
@@ -138,6 +146,7 @@ public class MainGameController : MonoBehaviour {
 
     public void RestartGame()//重新开始游戏
     {
+        Umeng.GA.FinishLevel(PlayerPrefs.GetInt("GameType").ToString());//统计
         DestroyAllBlock();
         gamecontroller.startGame();
         moveManager.Start();
@@ -160,7 +169,8 @@ public class MainGameController : MonoBehaviour {
 
     public void EndGame()//游戏结束
     {
-        
+        Umeng.GA.FailLevel(PlayerPrefs.GetInt("GameType").ToString());//统计
+
         gamecontroller.StopGame();
         moveManager.Pause();
         Score.instacne.SaveCurentScore();//保存一下分数
@@ -182,5 +192,7 @@ public class MainGameController : MonoBehaviour {
    {
        pauseLabel.GetComponent<TweenAlpha>().PlayReverse();
    }
+
+   
 
 }

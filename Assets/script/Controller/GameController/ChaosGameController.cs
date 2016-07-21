@@ -63,6 +63,7 @@ public class ChaosGameController : BaseGameController
 
         MainGameController.instance.sendStateChangeMsg();
         Score.instacne.scoreVal = 0;
+        isReverse = false;
     }
 
 

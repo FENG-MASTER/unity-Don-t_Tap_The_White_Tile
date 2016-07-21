@@ -201,6 +201,9 @@
     <Compile Include="Assets\NGUI\Scripts\UI\UITexture.cs" />
     <Compile Include="Assets\NGUI\Scripts\UI\UITooltip.cs" />
     <Compile Include="Assets\NGUI\Scripts\UI\UIViewport.cs" />
+    <Compile Include="Assets\UmengGameAnalytics\Scripts\Analytics.cs" />
+    <Compile Include="Assets\UmengGameAnalytics\Scripts\GA.cs" />
+    <Compile Include="Assets\UmengGameAnalytics\Scripts\UmengManager.cs" />
     <Compile Include="Assets\script\Controller\ChoiceController.cs" />
     <Compile Include="Assets\script\Controller\GameController\BaseGameController.cs" />
     <Compile Include="Assets\script\Controller\GameController\ChaosGameController.cs" />
@@ -230,8 +233,6 @@
     <Compile Include="Assets\script\MyUtils.cs" />
     <Compile Include="Assets\script\Score.cs" />
     <Compile Include="Assets\script\ScoreList.cs" />
-    <Compile Include="Assets\script\obsolete\JumpMoveManager.cs" />
-    <Compile Include="Assets\script\obsolete\MoveManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\NGUI\Examples\Atlases\Fantasy\Fantasy Font - Normal.txt" />
@@ -275,6 +276,7 @@
     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Packed 2.shader" />
     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Packed 3.shader" />
     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Packed.shader" />
+    <None Include="Assets\Plugins\Android\AndroidManifest.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2013\UnityVS.CSharp.targets" />
 </Project>
